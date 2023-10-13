@@ -92,6 +92,10 @@ public class BrowserStackReportForBuild extends AbstractBrowserStackReportForBui
         BrowserStackClient client =
                 ClientHandler.getBrowserStackClient(projectType, credentials.getUsername(), credentials.getDecryptedAccesskey(), customProxy, logger);
 
+        String system_env_variable = System.getenv("browserstack.automate.api");
+        logError(logger, "BROWSERSTACK ENV for browserstack.automate.api "+system_env_variable);
+        String system_prop_variable = System.getProperty("browserstack.automate.api");
+        logError(logger, "BROWSERSTACK SYS PROP for browserstack.automate.api "+system_prop_variable);
         browserStackBuild = fetchBrowserStackBuild(client, buildName);
 
         Optional.ofNullable(browserStackBuild)
